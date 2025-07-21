@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Failure Prediction</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 20px; }
+        form { background: #fff; padding: 20px; border-radius: 10px; width: 300px; margin: auto; }
+        input, button { margin-top: 10px; width: 100%; padding: 10px; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/predict">
+        <h2>Heart Failure Predictor</h2>
+        {% for feature in ["age", "anaemia", "creatinine_phosphokinase", "diabetes", "ejection_fraction",
+                          "high_blood_pressure", "platelets", "serum_creatinine", "serum_sodium", "sex", 
+                          "smoking", "time"] %}
+            <input name="{{ feature }}" type="text" placeholder="{{ feature.replace('_', ' ').title() }}" required>
+        {% endfor %}
+        <button type="submit">Predict</button>
+        {% if prediction_text %}
+        <p><strong>{{ prediction_text }}</strong></p>
+        {% endif %}
+    </form>
+</body>
+</html>
